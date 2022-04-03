@@ -2,7 +2,7 @@ var app = new Vue({
     el: '#app',
     data: {
         preloader: true,
-        SERVER_URL: 'http://localhost:3000/api',
+        SERVER_URL: 'https://rcdl-ga.vercel.app/api',
         modal: {
             shown: false,
             hasImage: false,
