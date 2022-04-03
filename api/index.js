@@ -2,6 +2,7 @@ const ogs = require('open-graph-scraper');
 const express = require('express');
 var cors = require('cors')
 const fs = require('fs');
+const { join } = require('path');
 const fetch = require('node-fetch');
 const links = require('./jsons/urls.json');
 const formidableMiddleware = require('express-formidable');
@@ -218,7 +219,7 @@ async function download(url, file) {
 
 async function addData(id, dataObject)
 {
-    const json_path = './jsons/urls.json';
+    const json_path = join(__dirname, 'jsons', 'urls.json');
 
     var data = await fs.readFileSync(json_path);
     var myObject= JSON.parse(data);
