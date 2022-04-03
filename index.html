@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RCDl.GA Link Shortener and Unblocker</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    
+    <div id="app">
+
+        <fade-transition>
+            <div class="preloader" v-if="preloader">
+                <img src="img/preloader.svg" alt="Preloader">
+            </div>
+        </fade-transition>
+
+        <img src="img/rcdl.ga.png" alt="Logo" class="logo" class="title">
+
+        <p class="description">Link shortener for bypassing social media URL blocks. Personal tool by @raldincasidar. LEARN MORE</p>
+
+        <input type="url" name="link" v-model="form.url" @keyup.enter="createNewUrl" id="link" class="link" placeholder="Paste link here to shorten ...">
+
+        <label class="b-contain">
+            <span>Custom Meta Tags</span>
+            <input v-model="modal.shown" type="checkbox">
+            <div class="b-input"></div>
+        </label>
+
+        <slide-y-down-transition>
+            <div class="modal-container" v-if="modal.shown">
+                <div class="modal">
+                    <div class="img-container" v-if="modal.hasImage" >
+                        <i class="material-icons close-btn" @click="removeImage()">close</i>
+                        <img :src="modal.imagePreview" alt="">
+                    </div>
+                    <div v-if="!modal.hasImage" class="image-placeholder" onclick="document.querySelector('#file').click()">
+                        <i class="material-icons">file_upload</i> <br>
+                        Upload Image File
+                    </div>
+                    <input @change="processImage" type="file" name="file" id="file" ref="file" accept="images/*" hidden>
+                    <label for="name">Name</label>
+                    <input type="text" v-model="form.name" name="name" id="name" placeholder="Title">
+                    <label for="description">Description</label>
+                    <input type="text" v-model="form.description" name="description" id="description" placeholder="Description">
+                    <label for="custom_tag">https://rcdlink.netlify.app/{{form.custom_url == '' ? '(random)' : convertToSlug(form.custom_url)}}</label>
+                    <input type="text" v-model="form.custom_url" name="custom_tag" id="custom_tag" placeholder="Custom Prefix">
+                    <button class="save-btn" @click="createNewUrl">Save & Shorten</button>
+                    <button class="save-btn close" @click="modal.shown  = false">Disable Custom Tag</button>
+                </div>
+            </div>
+        </slide-y-down-transition>
+    </div>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue2-transitions@0.3.0/dist/vue2-transitions.min.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>

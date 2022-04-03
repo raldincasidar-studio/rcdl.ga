@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Link is done! RCDl.GA</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    
+    <div id="app">
+
+        <fade-transition>
+            <div class="preloader" v-if="preloader">
+                <img src="img/preloader.svg" alt="Preloader">
+            </div>
+        </fade-transition>
+
+        <img src="img/rcdl.ga.png" alt="Logo" class="logo" class="title">
+
+        <p class="description">Your link is successfuly generated! Copy paste the link in the textbox</p>
+
+        <input type="url" name="link" v-model="generated_link" @keyup.enter="createNewUrl" ref="link" id="link" class="link" placeholder="Paste link here to shorten ..."> <br>
+        <button class="copy-link-button" @click="copyTextToClipboard($refs.link.value)">COPY LINK</button>
+
+    </div>
+
+    <script src="js/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/vue2-transitions@0.3.0/dist/vue2-transitions.min.js"></script>
+    <script src="js/script.js"></script>
+</body>
+</html>
